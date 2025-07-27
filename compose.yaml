@@ -3,7 +3,7 @@ version: '3.8'
 services:
     PGSQL:
         image: PostgreSQL:17
-        container_name: postgres
+        container_name: PostgreSQL
         environment:
             - PG_USER=user
             - PG_PASSWORD=${PGSQL_PASSWORD}
