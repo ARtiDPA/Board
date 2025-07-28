@@ -1,0 +1,22 @@
+#
+# NOTE: TO COMPOSE TYPE "docker compose --env-file=.env.*** up --build"
+#
+# CHANGE " *** " AND CHOOSE BETWEEN "dev" / "test" / "prod"
+#
+
+services:
+    PGSQL:
+        image: postgres:${POSTGRES_VERSION}
+        container_name: postgres
+        environment:
+            - POSTGRES_USER=${POSTGRES_USER}
+            - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+            - POSTGRES_DB=${POSTGRES_DB}
+        ports:
+            - ${POSTGRES_PORT}:5432
+    Redis:
+        image: redis:${REDIS_VERSION}
+        container_name: redis
+        ports:
+            - ${REDIS_VERSION}:6378
+        
