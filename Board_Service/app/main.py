@@ -5,11 +5,11 @@ from fastapi import FastAPI
 app = FastAPI()
 
 
-@app.get("/")
-def read_root():
+@app.get('/')
+async def read_root():
     """_summary_
     Board main page
     Returns:
-        json: message
+        json: status
     """
-    return {"service": "Board", "status": "running"}
+    return {'service': 'Board', 'status': 'running'}
