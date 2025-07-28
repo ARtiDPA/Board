@@ -5,4 +5,4 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return {"service": "auth", "status": "running"}
+    return {"service": "Board", "status": "running"}

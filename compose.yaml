@@ -19,20 +19,13 @@ services:
         container_name: redis
         ports:
             - ${REDIS_VERSION}:6378
-    board_service:
-        build: ./Board_Service
-        container_name: board_service
+    board_servicv:
+        build:
+            context: ./Board_Service
+            dockerfile: Dockerfile
+        container_name: Board_Service
         ports:
-            - "8000:8000"
-        environment:
-            - PYTHONUNBUFFERED=1
-        # Для разработки с hot-reload:
-        command: uvicorn board_service.main:app --host 0.0.0.0 --port 8000 --reload
-        volumes:
-            - ./:/app
-        restart: unless-stopped
-        networks:
-            - app-network
+            - "${BOARD_PORT}:8000"
 networks:
     app-network:
         driver: bridge
