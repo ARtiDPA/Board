@@ -19,13 +19,20 @@ services:
         container_name: redis
         ports:
             - ${REDIS_VERSION}:6378
-    board_servicv:
+    auth:
+        build:
+            context: ./Auth
+            dockerfile: Dockerfile
+        container_name: auth_service
+        ports:
+            - ${AUTH_PORT}:8000
+    board:
         build:
             context: ./Board_Service
             dockerfile: Dockerfile
-        container_name: Board_Service
+        container_name: board_service
         ports:
-            - "${BOARD_PORT}:8000"
+            - ${BOARD_PORT}:8000
 networks:
     app-network:
         driver: bridge
