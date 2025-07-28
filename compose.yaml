@@ -33,6 +33,13 @@ services:
         restart: unless-stopped
         networks:
             - app-network
+    Auth:
+        build:
+            context: ./Auth
+            dockerfile: Dockerfile
+        container_name: auth_service
+        ports:
+            - "${AUTH_PORT:-8001}:8000"
 networks:
     app-network:
         driver: bridge
