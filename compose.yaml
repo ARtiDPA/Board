@@ -1,4 +1,4 @@
-#
+#1
 # NOTE: TO COMPOSE TYPE "docker compose --env-file=.env.*** up --build"
 #
 # CHANGE " *** " AND CHOOSE BETWEEN "dev" / "test" / "prod"
@@ -19,4 +19,20 @@ services:
         container_name: redis
         ports:
             - ${REDIS_VERSION}:6378
-        
+    board_service:
+        build: ./Board_Service
+        container_name: board_service
+        ports:
+            - "8000:8000"
+        environment:
+            - PYTHONUNBUFFERED=1
+        # Для разработки с hot-reload:
+        command: uvicorn board_service.main:app --host 0.0.0.0 --port 8000 --reload
+        volumes:
+            - ./:/app
+        restart: unless-stopped
+        networks:
+            - app-network
+networks:
+    app-network:
+        driver: bridge
