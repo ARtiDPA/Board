@@ -19,4 +19,11 @@ services:
         container_name: redis
         ports:
             - ${REDIS_VERSION}:6378
+    Auth:
+        build:
+            context: ./Auth
+            dockerfile: Dockerfile
+        container_name: auth_service
+        ports:
+            - "${AUTH_PORT:-8001}:8000"
         
