@@ -1,4 +1,4 @@
-#
+#1
 # NOTE: TO COMPOSE TYPE "docker compose --env-file=.env.*** up --build"
 #
 # CHANGE " *** " AND CHOOSE BETWEEN "dev" / "test" / "prod"
@@ -19,11 +19,13 @@ services:
         container_name: redis
         ports:
             - ${REDIS_VERSION}:6378
-    Auth:
+    board_servicv:
         build:
-            context: ./Auth
+            context: ./Board_Service
             dockerfile: Dockerfile
-        container_name: auth_service
+        container_name: Board_Service
         ports:
-            - "${AUTH_PORT:-8001}:8000"
-        
+            - "${BOARD_PORT}:8000"
+networks:
+    app-network:
+        driver: bridge
