@@ -2,17 +2,6 @@
 
 from fastapi import FastAPI
 import uvicorn
+from tokens.tokens import create_access_token, create_refresh_token, verify_token
 
 app = FastAPI()
-
-@app.get('/')
-async def root():
-    """_summary_
-    Endpoint main page
-    Returns:
-        json: message about done
-    """    
-    return {'message':'Done', 'status':'running'}
-
-if __name__=='__main__':
-    uvicorn.run('main:app', host='0.0.0.0')
